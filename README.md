@@ -4,9 +4,9 @@ This repository contains the official Android application and source code for **
 
 By running entirely on-device with local GGUF models, EchoME overcomes the computational limits of fine-tuning and the privacy risks of cloud-based personalization. It surpasses a 72B naive RAG baseline by 4.39% in personalization accuracy using only a 4B model, while strictly satisfying mobile latency and memory constraints.
 
-<img src=".\assets\1.png" style="zoom:60%;" /> <img src=".\assets\3.png" style="zoom:60%;" />
+<img src=".\assets\1.png" style="zoom:40%;" /> <img src=".\assets\3.png" style="zoom:40%;" />
 
-## 🌈 Core Technical Innovations
+## ⭐️ Core Technical Innovations
 
 EchoME shifts the paradigm from static retrieval-augmented generation (RAG) pipelines to a dynamically evolving understanding of the user without any parameter updates.
 
@@ -23,7 +23,7 @@ To align the agents without updating model weights, we adopt a training-free par
 
 A single LLM agent struggles with complex edge tasks. EchoME utilizes a **Generation Agent** for context-aware reasoning and a **Memory Agent** for structuring fragmented data. The outcomes and reasoning of the Generation Agent provide feedback to the Memory Agent, refining the PEK and forming a self-improving closed loop.
 
-<img src=".\assets\2.png" style="zoom:67%;" />
+<img src=".\assets\2.png" style="zoom:50%;" />
 
 ### 3. Selective Block Activation
 
