@@ -4,7 +4,10 @@ This repository contains the official Android application and source code for **
 
 By running entirely on-device with local GGUF models, EchoME overcomes the computational limits of fine-tuning and the privacy risks of cloud-based personalization. It surpasses a 72B naive RAG baseline by 4.39% in personalization accuracy using only a 4B model, while strictly satisfying mobile latency and memory constraints.
 
-<img src=".\assets\1.png" style="zoom:40%;" /> <img src=".\assets\3.png" style="zoom:40%;" />
+<p align="center">
+  <img src="assets/1.png" width="45%" />
+  <img src="assets/3.png" width="45%" />
+</p>
 
 ## ⭐️ Core Technical Innovations
 
@@ -23,7 +26,9 @@ To align the agents without updating model weights, we adopt a training-free par
 
 A single LLM agent struggles with complex edge tasks. EchoME utilizes a **Generation Agent** for context-aware reasoning and a **Memory Agent** for structuring fragmented data. The outcomes and reasoning of the Generation Agent provide feedback to the Memory Agent, refining the PEK and forming a self-improving closed loop.
 
-<img src=".\assets\2.png" style="zoom:50%;" />
+<p align="center">
+  <img src="assets/2.png" width="80%" />
+</p>
 
 ### 3. Selective Block Activation
 
@@ -46,13 +51,17 @@ EchoME was rigorously evaluated on commercial mobile devices (Xiaomi 14) against
 
 EchoME demonstrates strong and consistent performance on both the **LiHua-World** (realistic on-device benchmark) and **MultiHop-RAG** (complex multi-step reasoning) datasets. Notably, it achieves this while keeping the size overhead orders of magnitude lower than graph-based methods (MiniRAG).
 
-<img src=".\assets\5.png" style="zoom:45%;" />
+<p align="center">
+  <img src="assets/5.png" width="70%" />
+</p>
 
 ### On-Device Inference Efficiency
 
 By utilizing Query-Driven Semantic Paging and dynamic KV cache management, EchoME significantly bypasses the memory wall, yielding superior Time-To-First-Token (TTFT) and decode throughput compared to NaiveRAG and EdgeRAG.
 
-<img src=".\assets\4.png" style="zoom:65%;" />
+<p align="center">
+  <img src="assets/4.png" width="90%" />
+</p>
 
 ------
 
