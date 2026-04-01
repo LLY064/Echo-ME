@@ -136,7 +136,7 @@ cd Echo-ME
 ### Important Dependencies & Assets
 
 - `app/libs/sentence_embeddings.aar`: Native library for generating text embeddings.
-- `app/libs/smollm_release.aar`: Native library for Inferece(Drivend by llama.cpp).
+- `app/libs/smollm_release.aar`: Native library for Inferece(Drived by llama.cpp).
 - `app/src/main/assets/all-MiniLM-L6-V2.onnx`: The local ONNX embedding model.
 
 ------
