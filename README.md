@@ -140,17 +140,3 @@ cd Echo-ME
 - `app/src/main/assets/all-MiniLM-L6-V2.onnx`: The local ONNX embedding model.
 
 ------
-
-## 📖 Citation
-
-If you find this codebase or our methodology useful in your research, please cite our MobiCom '26 paper:
-
-```txt
-@inproceedings{echome2026,
-  title={EchoME: Training-Free Co-Evolution of Memory and Generation Agents for On-Device Personalization},
-  author={[Your Names]},
-  booktitle={Proceedings of the 32nd Annual International Conference on Mobile Computing and Networking (MobiCom)},
-  year={2026},
-  location={Austin, Texas, USA}
-}
-```
