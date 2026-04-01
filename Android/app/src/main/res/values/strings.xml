@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Doc-QA</string>
+
+    <string name="prompt_1">
+Here is the retrieved context
+--------------------------------------------------
+$CONTEXT
+--------------------------------------------------
+Here is the user\'s query: $QUERY
+    </string>
+</resources>

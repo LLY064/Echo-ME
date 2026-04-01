@@ -1,0 +1,134 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
+    kotlin("plugin.serialization") version "2.0.21"
+}
+
+android {
+    namespace = "com.ml.shubham0204.docqa"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.ml.shubham0204.docqa"
+        minSdk = 26
+        targetSdk = 35
+        versionCode = 2
+        versionName = "2"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+    }
+    signingConfigs {
+        create("release") {
+            storeFile = file("../keystore.jks")
+            storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("RELEASE_KEYSTORE_ALIAS")
+            keyPassword = System.getenv("RELEASE_KEY_PASSWORD")
+        }
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+    kotlinOptions {
+        jvmTarget = "21"
+    }
+    buildFeatures {
+        compose = true
+    }
+    packaging {
+        resources {
+            excludes += "META-INF/DEPENDENCIES"
+        }
+    }
+    applicationVariants.configureEach {
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
+    }
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK", "true")
+}
+
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.compose.material3.icons.extended)
+    implementation(libs.navigation.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+
+    // Apache POI
+    implementation(libs.apache.poi)
+    implementation(libs.apache.poi.ooxml)
+
+    // Sentence Embeddings
+    // https://github.com/shubham0204/Sentence-Embeddings-Android
+    implementation(files("libs/sentence_embeddings.aar"))
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.17.0")
+
+    implementation(files("libs/smollm-release.aar"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+
+    // iTextPDF - for parsing PDFs
+    implementation(libs.itextpdf)
+
+    // ObjectBox - vector database
+    debugImplementation(libs.objectbox.android.objectbrowser)
+    releaseImplementation(libs.objectbox.android)
+
+    // Gemini SDK - LLM
+    implementation(libs.generativeai)
+
+    // compose-markdown
+    // https://github.com/jeziellago/compose-markdown
+    implementation(libs.compose.markdown)
+
+    // Koin dependency injection
+    implementation(libs.koin.android)
+    implementation(libs.koin.annotations)
+    implementation(libs.koin.androidx.compose)
+    ksp(libs.koin.ksp.compiler)
+
+    // For secured/encrypted shared preferences
+    implementation("androidx.security:security-crypto:1.1.0")
+
+    implementation("com.github.khushpanchal:Ketch:2.0.5")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    implementation("com.google.mediapipe:tasks-genai:0.10.29")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+apply(plugin = "io.objectbox")
