@@ -5,8 +5,8 @@ This repository contains the official Android application and source code for **
 By running entirely on-device with local GGUF models, EchoME overcomes the computational limits of fine-tuning and the privacy risks of cloud-based personalization. It surpasses a 72B naive RAG baseline by 4.39% in personalization accuracy using only a 4B model, while strictly satisfying mobile latency and memory constraints.
 
 <p align="center">
-  <img src="assets/1.png" width="45%" />
-  <img src="assets/3.png" width="45%" />
+  <img src="assets/1.png" width="40%" />
+  <img src="assets/3.png" width="50%" />
 </p>
 
 ## ⭐️ Core Technical Innovations
@@ -20,14 +20,14 @@ To bypass the prohibitive overhead of fine-tuning on mobile devices, EchoME empl
 - **Personal Fact Memory (PFM):** Captures concrete, episodic traces and raw factual data (e.g., chat logs, schedules).
 - **Personal Experience Knowledge (PEK):** Distills higher-level semantic insights, such as user routines, intents, and summary policies.
 
-To align the agents without updating model weights, we adopt a training-free paradigm inspired by Group Relative Policy Optimization (GRPO). The group-relative advantage for a generated rollout $o_{i}$ is computed to distill insights directly from success/failure trajectories: $$A_{i} = \frac{r_{i} - \mu_{r}}{\sigma_{r} + \epsilon}$$, where $\mu_{r}$ and $\sigma_{r}$ represent the mean and standard deviation of rewards within the generated group.
+To align the agents without updating model weights, we adopt a training-free paradigm inspired by Group Relative Policy Optimization (GRPO). The group-relative advantage for a generated rollout $o_{i}$ is computed to distill insights directly from success/failure trajectories.
 
 ### 2. Multi-Agent Co-Evolution
 
 A single LLM agent struggles with complex edge tasks. EchoME utilizes a **Generation Agent** for context-aware reasoning and a **Memory Agent** for structuring fragmented data. The outcomes and reasoning of the Generation Agent provide feedback to the Memory Agent, refining the PEK and forming a self-improving closed loop.
 
 <p align="center">
-  <img src="assets/2.png" width="80%" />
+  <img src="assets/2.png" width="60%" />
 </p>
 
 ### 3. Selective Block Activation
@@ -35,9 +35,7 @@ A single LLM agent struggles with complex edge tasks. EchoME utilizes a **Genera
 Injecting rich, evolving context into an LLM prompt inevitably leads to prohibitive latency and excessive memory consumption. To solve the KV cache bottleneck, EchoME introduces **Selective Block Activation**:
 
 - **Query-Driven Semantic Paging:** Decouples lightweight indexing in RAM from heavy KV caches offloaded to flash storage, dynamically fetching only the most relevant blocks by evaluating a utility score that balances semantic resonance, temporal dynamics, and I/O penalties.
-- **Temporal-Anchored Sparse Alignment:** Employs dynamic RoPE (Rotary Position Embedding) alignment to mathematically resolve positional conflicts when loading disjointed memory blocks. The cached key and value vectors are rotated to reflect their new sequence positions:
-
-​                                                                                                   $$k_{new} = \mathcal{R}((p_{new} - p_{old}) \cdot \theta) \cdot k_{old}$$
+- **Temporal-Anchored Sparse Alignment:** Employs dynamic RoPE (Rotary Position Embedding) alignment to mathematically resolve positional conflicts when loading disjointed memory blocks. The cached key and value vectors are rotated to reflect their new sequence positions.
 
 This exact transformation eliminates positional conflicts and guarantees robust cache reuse during sparse inference.
 
