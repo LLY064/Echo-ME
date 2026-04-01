@@ -50,7 +50,7 @@ EchoME was rigorously evaluated on commercial mobile devices (Xiaomi 14) against
 EchoME demonstrates strong and consistent performance on both the **LiHua-World** (realistic on-device benchmark) and **MultiHop-RAG** (complex multi-step reasoning) datasets. Notably, it achieves this while keeping the size overhead orders of magnitude lower than graph-based methods (MiniRAG).
 
 <p align="center">
-  <img src="assets/5.png" width="70%" />
+  <img src="assets/5.png" width="80%" />
 </p>
 
 ### On-Device Inference Efficiency
