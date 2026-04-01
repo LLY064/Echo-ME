@@ -35,9 +35,7 @@ A single LLM agent struggles with complex edge tasks. EchoME utilizes a **Genera
 Injecting rich, evolving context into an LLM prompt inevitably leads to prohibitive latency and excessive memory consumption. To solve the KV cache bottleneck, EchoME introduces **Selective Block Activation**:
 
 - **Query-Driven Semantic Paging:** Decouples lightweight indexing in RAM from heavy KV caches offloaded to flash storage, dynamically fetching only the most relevant blocks by evaluating a utility score that balances semantic resonance, temporal dynamics, and I/O penalties.
-- **Temporal-Anchored Sparse Alignment:** Employs dynamic RoPE (Rotary Position Embedding) alignment to mathematically resolve positional conflicts when loading disjointed memory blocks. The cached key and value vectors are rotated to reflect their new sequence positions.
-
-This exact transformation eliminates positional conflicts and guarantees robust cache reuse during sparse inference.
+- **Temporal-Anchored Sparse Alignment:** Employs dynamic RoPE (Rotary Position Embedding) alignment to mathematically resolve positional conflicts when loading disjointed memory blocks. The cached key and value vectors are rotated to reflect their new sequence positions.This exact transformation eliminates positional conflicts and guarantees robust cache reuse during sparse inference.
 
 ------
 
@@ -88,17 +86,7 @@ Echo-ME/
 │   │
 │   ├── ui/                      # UI Layer
 │   │   ├── MainActivity.kt      # Navigation
-│   │   ├── theme/               # Material 3 Theme Configuration
-│   │   ├── components/          # Reusable Compose widgets
-│   │   └── screens/
-│   │       ├── chat/            # Main interactive chat screen
-│   │       ├── docs/            # Document ingestion and management
-│   │       ├── echome/          # Echo-ME advanced multi-agent inference UI
-│   │       ├── naiverag/        # Baseline: Naive RAG evaluation
-│   │       └── edgerag/         # Baseline: Edge RAG evaluation
-│   │
-│   └── di/
-│       └── AppModule.kt         # Koin DI module definitions
+│   │   ├── ...
 ```
 
 ------
